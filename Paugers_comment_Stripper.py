@@ -270,10 +270,10 @@ class CommentStripper:
 
 
   def remove_unwanted(self,output_df):
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder = path_to_download_folder + "/extraced.json"
-    output_df.to_json(path_to_download_folder, orient = 'records')
-    comments = pd.read_json(path_to_download_folder)
+    #path_to_download_folder = expanduser("~") + '/Downloads'
+    #path_to_download_folder = path_to_download_folder + "/extraced.json"
+    #temp_comments = output_df.to_json(orient = 'records')
+    comments = pd.read_json(output_df.to_json(orient = 'records'))
     demoji.download_codes()
 
     comments['clean_comments'] = comments['commentString'].apply(lambda x: demoji.replace(x,""))
@@ -287,8 +287,8 @@ class CommentStripper:
     return comments
 
   def un_cringe(self,copy):
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder = expanduser("~") + '/Downloads' + "/Dataset.json"
+    #path_to_download_folder = expanduser("~") + '/Downloads'
+    #path_to_download_folder = expanduser("~") + '/Downloads' + "/Dataset.json"
     regex = r"[^0-9A-Za-z'\t]"
     copy['reg'] = copy['clean_comments'].apply(lambda x:re.findall(regex,x))
     copy['theCommentString'] = copy['clean_comments'].apply(lambda x:re.sub(regex, " ",x))
@@ -300,7 +300,8 @@ class CommentStripper:
     copy['theVideoTitle'] = copy['clean_video_title'].apply(lambda x:re.sub(regex, " ",x))
 
     dataset = copy[['commentId','theCommentString','commentLikes','commentReplies','commentIsA_Reply','parentCommentId','theParentCommentString','commentChannelId','commentUploadTime', 'commentChannelName', 'theVideoTitle','videoId','videoChannelTitle','videoChannelID','videoLikes','videoDislikes','videoViewCount','videoCommentCount','videoUploadTime','videoChannelSubscribers']].copy()
-    dataset.to_json(path_to_download_folder, orient = 'records' )
+    data_set = dataset.to_json(orient = 'records')
+    return data_set
 
 
 # In[19]:

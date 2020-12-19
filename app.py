@@ -16,58 +16,57 @@ def index():
 
 @app.route('/videoId/<ID>/<APIKEY>', methods =['POST'])
 def get_comments(ID,APIKEY):
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder = path_to_download_folder + "/Dataset.json"
+    #path_to_download_folder = expanduser("~") + '/Downloads'
+    #path_to_download_folder = path_to_download_folder + "/Dataset.json"
     strip = CommentStripper(ID,APIKEY)
     strip.video_data()
     x =strip.top_comment_strip()
     y=strip.remove_unwanted(x)
-    strip.un_cringe(y)
+    return strip.un_cringe(y)
+    #transfer_file = None
+    #with open(path_to_download_folder, "r") as file:
+        #transfer_file = json.load(file)
+    #temp_string = "/" + ID + "video.json"
+    #destination = expanduser("~") + '/Downloads' + temp_string
+    #with open(destination, "w") as saved_file:
+        #json.dump(transfer_file, saved_file)
 
-    transfer_file = None
-    with open(path_to_download_folder, "r") as file:
-        transfer_file = json.load(file)
-    temp_string = "/" + ID + "video.json"
-    destination = expanduser("~") + '/Downloads' + temp_string
-    with open(destination, "w") as saved_file:
-        json.dump(transfer_file, saved_file)
+    #path_to_download_folder = expanduser("~") + '/Downloads'
+    #path_to_download_folder0 = path_to_download_folder + "/extraced.json"
+    #path_to_download_folder1 = path_to_download_folder + "/Dataset.json"
 
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder0 = path_to_download_folder + "/extraced.json"
-    path_to_download_folder1 = path_to_download_folder + "/Dataset.json"
+    #os.remove(path_to_download_folder0)
+    #os.remove(path_to_download_folder1)
 
-    os.remove(path_to_download_folder0)
-    os.remove(path_to_download_folder1)
-
-    return("Comments Extracted")
+    #return("Comments Extracted")
 
 @app.route('/videoIdM/<ID>/<APIKEY>', methods =['GET'])
 def get_comments_manual(ID,APIKEY):
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder = path_to_download_folder + "/Dataset.json"
+    #path_to_download_folder = expanduser("~") + '/Downloads'
+    #path_to_download_folder = path_to_download_folder + "/Dataset.json"
     strip = CommentStripper(ID,APIKEY)
     strip.video_data()
     x =strip.top_comment_strip()
     y=strip.remove_unwanted(x)
-    strip.un_cringe(y)
+    return strip.un_cringe(y)
 
-    transfer_file = None
+    #transfer_file = None
 
-    with open(path_to_download_folder, "r") as file:
-        transfer_file = json.load(file)
-    temp_string = "/" + ID + "video.json"
-    destination = expanduser("~") + '/Downloads' + temp_string
-    with open(destination, "w") as saved_file:
-        json.dump(transfer_file, saved_file)
-
-    path_to_download_folder = expanduser("~") + '/Downloads'
-    path_to_download_folder0 = path_to_download_folder + "/extraced.json"
-    path_to_download_folder1 = path_to_download_folder + "/Dataset.json"
-
-    os.remove(path_to_download_folder0)
-    os.remove(path_to_download_folder1)
-
-    return("Comments Extracted")
+    # with open(path_to_download_folder, "r") as file:
+    #     transfer_file = json.load(file)
+    # temp_string = "/" + ID + "video.json"
+    # destination = expanduser("~") + '/Downloads' + temp_string
+    # with open(destination, "w") as saved_file:
+    #     json.dump(transfer_file, saved_file)
+    #
+    # path_to_download_folder = expanduser("~") + '/Downloads'
+    # path_to_download_folder0 = path_to_download_folder + "/extraced.json"
+    # path_to_download_folder1 = path_to_download_folder + "/Dataset.json"
+    #
+    # os.remove(path_to_download_folder0)
+    # os.remove(path_to_download_folder1)
+    #
+    # return("Comments Extracted")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
