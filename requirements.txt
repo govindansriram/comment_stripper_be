@@ -4,8 +4,10 @@ chardet==4.0.0
 click==7.1.2
 colorama==0.4.4
 demoji==0.4.0
+dnspython==2.0.0
 Flask==1.1.2
 Flask-Cors==3.0.9
+Flask-PyMongo==2.3.0
 google-api-core==1.24.1
 google-api-python-client==1.12.8
 google-auth==1.24.0
@@ -27,6 +29,7 @@ path==15.0.1
 protobuf==3.14.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
+pymongo==3.11.2
 python-dateutil==2.8.1
 pytz==2020.4
 requests==2.25.1
