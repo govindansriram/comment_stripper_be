@@ -1,6 +1,8 @@
 import json
 import pymongo
 import ssl
+import os
+from dotenv import load_dotenv
 
 class db:
 
@@ -8,7 +10,8 @@ class db:
         self.comment_data = json.loads(json_string)
         channel_id = self.comment_data[0]['videoChannelID']
         database_name = channel_id
-        CONNECTION_STRING = "mongodb+srv://gsriram:Billion$100@comments.egtqy.mongodb.net/?retryWrites=true&w=majority"
+        load_dotenv()
+        CONNECTION_STRING = os.getenv('DB_KEY')
         client = pymongo.MongoClient(CONNECTION_STRING, ssl_cert_reqs=ssl.CERT_NONE)
         self.base = client[database_name]
 

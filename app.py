@@ -24,7 +24,8 @@ def get_comments(ID,APIKEY):
     y=strip.remove_unwanted(x)
     spread_insert = db(strip.un_cringe(y))
     spread_insert.add_data()
-    return "Succesful"
+    ret = "Successfully added videoId: " + ID + " to MongoDB"
+    return ret
 
 
 @app.route('/videoIdM/<ID>/<APIKEY>', methods =['GET'])
@@ -35,7 +36,8 @@ def get_comments_manual(ID,APIKEY):
     y=strip.remove_unwanted(x)
     spread_insert = db(strip.un_cringe(y))
     spread_insert.add_data()
-    return "Succesful"
+    ret = "Successfully added videoId: " + ID + " to MongoDB"
+    return ret
 
 
 if __name__ == "__main__":
